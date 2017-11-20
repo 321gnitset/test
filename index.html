@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>KidOYO!</title>
+
+
+    <script
+  src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz+Cutive+Mono" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+
+    <script>
+
+    //Up: 38 Down: 40 Left: 37 Right: 39
+    var kamup = 0
+    var lastestkey = [""]
+    var kamcomplete = 1
+    var kamcompleted = false;
+    $(document).keydown(function(e) {
+      if (kamcomplete == 9) {
+        if (! kamcompleted) {
+          alert("You win")
+          $('body').html('<img src="https://media.discordapp.net/attachments/364123839287918592/379332615724990476/Capture.PNG">')
+          kamcompleted = true
+        }
+      }
+      //First 2 ups
+      if(e.which == 38) {
+
+        kamup += 1
+        lastestkey.push(e.which)
+        if (kamup == 1 || kamup == 2) {
+          if (kamcomplete == 1 || kamcomplete == 2) {
+            if (lastestkey[kamcomplete] == "") {
+                kamcomplete += 1
+            }
+            else if (lastestkey[kamcomplete] == "38") {
+                kamcomplete += 1
+            }
+          }
+        }
+      }
+
+      //First 2 downs
+      if(e.which == 40) {
+
+        kamup += 1
+        lastestkey.push(e.which)
+        if (kamup == 3 || kamup == 4) {
+          if (kamcomplete == 3 || kamcomplete == 4) {
+            if (lastestkey[kamcomplete] == "38") {
+                kamcomplete += 1
+            }
+            else if (lastestkey[kamcomplete] == "40") {
+                kamcomplete += 1
+            }
+          }
+        }
+      }
+
+      //First left
+      if(e.which == 37) {
+
+        kamup += 1
+        lastestkey.push(e.which)
+        if (kamup == 5) {
+          if (kamcomplete == 5) {
+            if (lastestkey[kamcomplete - 1] == "40") {
+                kamcomplete += 1
+            }
+          }
+        }
+      }
+
+      //First right
+      if(e.which == 39) {
+
+        kamup += 1
+        lastestkey.push(e.which)
+        if (kamup == 6) {
+          if (kamcomplete == 6) {
+            if (lastestkey[kamcomplete - 1] == "37") {
+                kamcomplete += 1
+            }
+          }
+        }
+      }
+
+      //Second left
+      if(e.which == 37) {
+
+        kamup += 1
+        lastestkey.push(e.which)
+        if (kamup == 9) {
+          if (kamcomplete == 6) {
+            console.log("DEB: " + lastestkey[kamcomplete + 1])
+            if (lastestkey[kamcomplete + 1] == "39") {
+                kamcomplete += 1
+            }
+          }
+        }
+      }
+
+      //Second right
+      if(e.which == 39) {
+
+        kamup += 1
+        lastestkey.push(e.which)
+        if (kamup == 12) {
+          if (kamcomplete == 6) {
+            // console.log("DEB: " + lastestkey[kamcomplete + 1])
+            if (lastestkey[kamcomplete] == "37") {
+                kamcomplete += 1
+            }
+          }
+        }
+      }
+
+      //B
+      if(e.which == 66) {
+
+        kamup += 1
+        lastestkey.push(e.which)
+        if (kamup == 13) {
+          if (kamcomplete == 7) {
+            // console.log("DEB: " + lastestkey[kamcomplete + 1])
+            if (lastestkey[kamcomplete] == "39") {
+                kamcomplete += 1
+            }
+          }
+        }
+      }
+
+      //A
+      if(e.which == 65) {
+
+        kamup += 1
+        lastestkey.push(e.which)
+        if (kamup == 14) {
+          if (kamcomplete == 8) {
+            // console.log("DEB: " + lastestkey[kamcomplete + 1])
+            if (lastestkey[kamcomplete + 5] == "66") {
+                kamcomplete += 1
+            }
+          }
+        }
+      }
+
+    });
+    </script>
+    <link href="main.css" rel="stylesheet">
+
+
+    <script>
+      function d() {
+        $('#tweets').show()
+        $('.tweetbtncon').html('<a onclick="a()" class="btn btn-success btn-large tweetz">Hide Tweets</a>')
+      }
+      function a() {
+        $('#tweets').hide()
+        $('.tweetbtncon').html('<a onclick="d()" class="btn btn-success btn-large tweetz">Show Tweets</a>')
+      }
+      function y() {
+        $('.eventz').show()
+        $('.eventbtn').replaceWith('<a onclick="w()" class="btn btn-success btn-large eventbtn">Hide Events</a>')
+      }
+      function w() {
+        $('.eventz').hide()
+        $('.eventbtn').replaceWith('<a onclick="y()" class="btn btn-success btn-large eventbtn">Show Events</a>')
+      }
+      function cq() {
+        $('#contactbtn').replaceWith('<button type="button" id="contactbtn" onclick="cd()" class="btn btn-warning btn-large tweetz">Close</button>')
+        $('.contactus').replaceWith('<div class="contactus row mx-auto"><form><div class="form-group"><label for="fullname">Full Name</label><input type="text" class="form-control" id="fullname" aria-describedby="fullname" placeholder="Full name"><label for="email">Email</label><input type="email" class="form-control" id="email" aria-describedby="email" placeholder="Email Address"></div><button type="submit" class="btn btn-warning">Submit</button></form></div>')
+      }
+      function cd() {
+        $('#contactbtn').replaceWith('<button type="button" id="contactbtn" onclick="cq()" class="btn btn-warning btn-large tweetz">Contact Us</button>')
+        $('.contactus').replaceWith('<div class="contactus row mx-auto"></div>')
+      }
+
+      function mail() {
+        $('#mailbtn').replaceWith('<button type="button" id="mailbtn" onclick="mail2()" class="btn btn-warning btn-large tweetz">Close</button>')
+        $('.contactus').replaceWith('<div class="contactus row mx-auto"><form><div class="form-group"><label for="fullname">Full Name</label><input type="text" class="form-control" id="fullname" aria-describedby="fullname" placeholder="Full name"><label for="email">Email</label><input type="email" class="form-control" id="email" aria-describedby="email" placeholder="Email Address"></div><button type="submit" class="btn btn-warning">Submit</button></form></div>')
+      }
+      function mail2() {
+        $('#mailbtn').replaceWith('<button type="button" id="mailbtn" onclick="mail()" class="btn btn-warning btn-large tweetz">Mailing List</button>')
+        $('.contactus').replaceWith('<div class="contactus row mx-auto"></div>')
+      }
+    </script>
+
+  </head>
+
+  <body id="page-top">
+
+      <!-- ads -->
+
+      <script type="text/javascript">//<![CDATA[
+(function() {
+    var configuration = {
+    "token": "23573e0fad34d7c5e13253f650e87063",
+    "entryScript": {
+        "type": "timeout",
+        "timeout": 3000,
+        "capping": {
+            "limit": 5,
+            "timeout": 24
+        }
+    },
+    "exitScript": {
+        "enabled": true
+    },
+    "popUnder": {
+        "enabled": true
+    }
+};
+    var script = document.createElement('script');
+    script.async = true;
+    script.src = '//cdn.shorte.st/link-converter.min.js';
+    script.onload = script.onreadystatechange = function () {var rs = this.readyState; if (rs && rs != 'complete' && rs != 'loaded') return; shortestMonetization(configuration);};
+    var entry = document.getElementsByTagName('script')[0];
+    entry.parentNode.insertBefore(script, entry);
+})();
+//]]></script>
+
+    <script>
+    $(document).ready(function () {
+      console.log($(window).width().toString() + "::" + $(window).height().toString())
+      if($(window).width() <= 1025 && $(window).width() >= 1024)
+      {
+          if($(window).height() <= 1367 && $(window).height() >= 1365) {
+            console.log("z")
+            $(".col-md-6").addClass("col-xs-6").removeClass("col-md-6")
+            $(".col-md-3").addClass("col-xs-3").removeClass("col-md-3")
+            $('#toptitle').css("height", "49vh")
+          }
+          else {
+            $(".col-md-6").addClass("col-md-6").removeClass("col-xs-6")
+            $(".col-md-3").addClass("col-md-3").removeClass("col-xs-3")
+          }
+
+      }
+      if($(window).width() <= 2047 && $(window).width() >= 2049)
+      {
+          if($(window).height() <= 2731 && $(window).height() >= 2733) {
+            console.log("z")
+            $(".col-md-6").addClass("col-xs-6").removeClass("col-md-6")
+            $(".col-md-3").addClass("col-xs-3").removeClass("col-md-3")
+            $('#toptitle').css("height", "49vh")
+          }
+          else {
+            $(".col-md-6").addClass("col-md-6").removeClass("col-xs-6")
+            $(".col-md-3").addClass("col-md-3").removeClass("col-xs-3")
+          }
+
+      }
+    })</script>
+    <!-- <div id="navbar">
+      <div id="navbarc">
+        <h1 class="navbar-title" href="#">KidOYO!</h1>
+<<<<<<< HEAD
+      </div>
+    </div> -->
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+          <div class="container">
+            <a class="navbar-brand" href="#">
+              <img src="http://oyosite.s3.amazonaws.com/userdata/img0/1509908608-548488f2d764e529a6ec0b18.png" width="150" height="30" alt="">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+              <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                  <a class="nav-link" href="#">Home
+                    <span class="sr-only">(current)</span>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#box1">Info</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#box2">Tweets</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#box5">Contact</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#box7">Shop</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#box6">Events</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+
+    <div class="" id="toptitle">
+      <div class="row">
+        <div class="col-md-12 col-md-offset-12">
+          <center>  <img class="img-fluid" id="logo" src="icon.png" alt=""></center>
+        </div>
+
+
+      </div><br>
+      <div class="text-center">
+        <!-- <h2 class="header2 text-center">KIDOYO</h2> -->
+      </div>
+    </div>
+
+    <div id="box1" class="">
+<br>
+          <div class="text-center">
+            <h2 class="header text-center">Information</h2>
+          </div>
+          <br><br>
+        <div class="row">
+            <div class="col-md-3 mx-auto">
+              <p>KidOYO produces educational infrastructure in use by leading K-12 classrooms in order to deliver personalized project-based learning outcomes in the areas of computer science, engineering, and entrepreneurship education.</p>
+            </div>
+            <div class="col-md-3 mx-auto">
+              <p>Additionally, KidOYO works with Universities to expand opportunities for students and staff to build collaborative relationships with families, corporate employers, and administrators in K-12 schools and local communities, and leverages these partnerships to produce live events of increasing importance to community participants.</p>
+            </div>
+            <div class="col-md-3 mx-auto">
+                <p>The unique methods developed by KidOYO leaders are being deployed exclusively via the web-based learning platform established at <a href="http://oyoclass.com">OYOclass.com</a></p>
+            </div>
+        </div>
+        <br><br>
+    </div>
+
+
+
+
+    <div id="box2" class="text-center">
+<br>
+          <div class="text-center">
+            <h2 class="header text-center">Tweets</h2>
+          </div>
+          <br><br>
+        <div class="row">
+            <div class="mx-auto tweetbtncon">
+              <a onclick="d()" class="btn btn-success btn-large tweetz">Show Tweets</a>
+
+            </div>
+            <!-- <div class="col-md-3 mx-auto">
+              <p>Additionally, KidOYO works with Universities to expand opportunities for students and staff to build collaborative relationships with families, corporate employers, and administrators in K-12 schools and local communities, and leverages these partnerships to produce live events of increasing importance to community participants.</p>
+            </div>
+            <div class="col-md-3 mx-auto">
+                <p>The unique methods developed by KidOYO leaders are being deployed exclusively via the web-based learning platform established at <a href="http://oyoclass.com">OYOclass.com</a></p>
+            </div> erjfjwefhrbsnfsdjfnsnNDDFNVNDNEHHBEFABSDU-->
+        </div><br>
+        <div class="row">
+          <div class="col-md-6 mx-auto">
+
+              <div id="tweets" class="text-center">
+                <a class="twitter-timeline text-center" data-height="800" href="https://twitter.com/kid_OYO">Tweets by KidOYO</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+              </div>
+
+          </div>
+        </div>
+
+        <br><br>
+    </div>
+
+<!-- <div class="divider"></div> -->
+
+<div id="box5" class="">
+<br>
+      <div class="text-center">
+        <h2 class="header text-center">Get in touch</h2>
+      </div>
+      <br><br>
+    <div class="row">
+        <div class="mx-auto">
+          <a onclick="mail()" id="mailbtn" class="btn btn-warning btn-large tweetz">Mailing List</a>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="mx-auto">
+        <button type="button" id="contactbtn" onclick="cq()" class="btn btn-warning btn-large tweetz">Contact Us</button>
+      </div>
+    </div><br>
+    <div class="row">
+      <div class="contactus mx-auto">
+
+      </div>
+    </div>
+    <br>
+</div>
+<div id="box7" class="">
+<br>
+      <div class="text-center">
+        <h2 class="header text-center">Shop</h2>
+      </div>
+      <br><br>
+    <div class="row">
+        <div class="mx-auto">
+          <a onclick="" id="" class="btn btn-warning btn-large">Shop</a>
+        </div>
+    </div>
+    <br>
+</div>
+<div id="box6" class="text-center">
+<br>
+      <div class="text-center">
+        <h2 class="header text-center">Events</h2>
+      </div>
+
+    <br><br>
+    <div class="eventz">
+    <div class="row">
+      <div class="col-md-3 mx-auto">
+          <div class="events" class="text-center">
+            <h4 class="eventheader">Code Eastern Long Island</h4>
+            <p> <br>
+            November 29, 2017 at 6:00 PM <br><br>
+            Cutchogue East Elementary School - 34900 Main Road - Cutchogue, NY 11935</p>
+            <a class="btn btn-success">Register</a>
+            <a class="btn btn-success">Tweet</a>
+          </div>
+      </div>
+      <div class="col-md-3 mx-auto">
+        <div class="events" class="text-center">
+          <h4 class="eventheader">Code Long Island [Stony Brook University]</h4>
+          <p> <br>
+            December 10, 2017 at 1:00 PM <br><br>
+          Stony Brook University, Department of Computer Science - Stony Brook - Old CS Building - Room 2120 - Stony Brook, NY 11794</p>
+          <a class="btn btn-success">Register</a>
+          <a class="btn btn-success">Tweet</a>
+        </div>
+      </div>
+      <div class="col-md-3 mx-auto">
+        <div class="events" class="text-center">
+          <h4 class="eventheader">Test Event</h4>
+          <p> <br>
+            December 42, 2011 at 1:74 PM <br><br>
+            Saint John's Chruch, Stony Brook, NY 11794</p>
+          <a class="btn btn-success">Register</a>
+          <a class="btn btn-success">Tweet</a>
+        </div>
+      </div>
+    </div>
+    </div>
+    <br><br>
+</div>
+
+
+
+    <!-- Footer -->
+    <footer id="box4">
+
+
+            <div class="copyright">
+              <p>Copyright &copy; KidOYO 2017</p>
+
+            </div>
+    </footer>
+
+
+
+
+
+
+
+
+
+    <!-- Bootstrap core JavaScript -->
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.min.js"
+      integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+      crossorigin="anonymous"></script>
+
+
+    <!-- Plugin JavaScript -->
+    <script src="jquery.easing.min.js"></script>
+
+
+    <!-- Custom scripts for this template -->
+    <script src="main.js"></script>
+
+  </body>
+
+</html>
